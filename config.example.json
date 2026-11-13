@@ -1,0 +1,13 @@
+{
+  "user_name": "",
+  "hotkey": "win+alt+r",
+  "screen_ocr_interval_seconds": 20,
+  "screenshot_retention_days": 7,
+  "capture_all_monitors": true,
+  "capture_exclusions": ["1password", "bitwarden", "keepass", "inprivate", "private browsing", "password", "bank"],
+  "cloud_ai_enabled": false,
+  "gemini_api_key": "",
+  "groq_api_key": "",
+  "gemini_model": "gemini-2.5-flash",
+  "groq_model": "llama-3.3-70b-versatile"
+}

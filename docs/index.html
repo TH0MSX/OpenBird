@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenBird: local-first meeting recorder and screen memory for Windows 11</title>
+<meta name="description" content="OpenBird records your meetings, transcribes them offline, remembers your screen and writes plain Markdown notes. A personal, noncommercial project for Windows 11.">
+<meta property="og:title" content="OpenBird">
+<meta property="og:description" content="Local-first meeting recorder and screen memory for Windows 11. A personal project.">
+<meta property="og:image" content="https://th0msx.github.io/OpenBird/social-preview.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/icon-256.png">
+<style>
+:root{
+  --bg:#0f0817; --bg2:#170d24; --card:#1d1230; --card2:#241639; --line:#ffffff1f; --text:#f4eefb; --muted:#bfb2d4;
+  --accent:#c77dff; --accent2:#9b4dff; --warn:#ffd166; --ok:#7ee0a1;
+  --max:1120px; --r:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 "Segoe UI Variable","Segoe UI",system-ui,-apple-system,"Inter",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(900px 520px at 85% -5%,#5b2a8f44,transparent 60%),radial-gradient(700px 500px at 0% 100%,#c2308a26,transparent 60%)}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;height:auto;display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+header.nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:#0f0817cc;border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--text);font-size:18px}
+.brand img{width:30px;height:30px;border-radius:8px}
+.nav nav{display:flex;gap:22px;font-size:15px}
+.nav nav a{color:var(--muted)}
+.nav nav a:hover{color:var(--text);text-decoration:none}
+.hero{padding:72px 0 40px;text-align:center}
+.hero .logo{width:96px;height:96px;margin:0 auto 20px;border-radius:22px;box-shadow:0 18px 50px #9b4dff55}
+.hero h1{font-size:clamp(40px,7vw,72px);line-height:1.05;margin:0 0 14px;letter-spacing:-.025em}
+.hero p.lead{font-size:clamp(18px,2.4vw,23px);color:var(--muted);max-width:720px;margin:0 auto 28px}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:12px;font-weight:600;font-size:16px;border:1px solid var(--line);color:var(--text);background:#ffffff0d}
+.btn:hover{text-decoration:none;background:#ffffff1a}
+.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#14061f;border:0;box-shadow:0 10px 30px #9b4dff44}
+.btn.primary:hover{filter:brightness(1.08)}
+.small{font-size:14px;color:var(--muted);margin-top:14px}
+.shot{margin:44px auto 0;max-width:900px}
+.shot img{width:100%}
+.notice{margin:40px 0;border:1px solid #ffd16655;background:#ffd1660f;border-radius:var(--r);padding:20px 24px}
+.notice h2{margin:0 0 8px;font-size:18px;color:var(--warn)}
+.notice p{margin:6px 0;color:#f2e8c8}
+section{padding:56px 0}
+section h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;margin:0 0 10px}
+section .sub{color:var(--muted);max-width:720px;margin:0 0 30px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.card h3{margin:0 0 6px;font-size:18px}
+.card p{margin:0;color:var(--muted);font-size:15.5px}
+.card .ic{width:38px;height:38px;border-radius:10px;background:#c77dff22;color:var(--accent);display:grid;place-items:center;margin-bottom:12px;font-size:20px}
+.gallery{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.gallery figure{margin:0}
+.gallery figcaption{color:var(--muted);font-size:14.5px;text-align:center;margin-top:2px}
+.steps{counter-reset:s;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.steps .card::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#14061f;font-weight:700;margin-bottom:12px}
+pre{background:#0a0512;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font:14.5px/1.55 ui-monospace,"Cascadia Code",Consolas,monospace;color:#eadcff;margin:14px 0}
+code{overflow-wrap:anywhere;font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-size:.92em;background:#ffffff14;padding:1px 6px;border-radius:6px}
+pre code{background:none;padding:0;overflow-wrap:normal}
+table{width:100%;border-collapse:collapse;font-size:15.5px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#ffffff0d;color:var(--muted);font-weight:600;width:34%}
+tr:last-child td,tr:last-child th{border-bottom:0}
+.tag{display:inline-block;font-size:13px;padding:2px 10px;border-radius:99px;font-weight:600}
+.tag.ok{background:#7ee0a122;color:var(--ok)}
+.tag.no{background:#ffd16622;color:var(--warn)}
+.two{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.rec{border-color:#c77dff77;box-shadow:0 0 0 1px #c77dff33 inset}
+footer{border-top:1px solid var(--line);padding:34px 0 50px;color:var(--muted);font-size:14.5px}
+footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
+@media (max-width:640px){.nav nav a:not(.keep){display:none}.hero{padding-top:44px}}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <a class="brand" href="#top"><img src="img/icon-256.png" alt="">OpenBird</a>
+  <nav><a href="#features">Features</a><a href="#install">Install</a><a href="#status">Tested on</a><a href="#privacy">Privacy</a><a class="keep" href="https://github.com/TH0MSX/OpenBird">GitHub</a></nav>
+</div></header>
+
+<main id="top">
+<div class="wrap">
+
+  <div class="hero">
+    <img class="logo" src="img/icon.png" alt="OpenBird icon">
+    <h1>OpenBird</h1>
+    <p class="lead">A local-first meeting recorder and screen memory for Windows&nbsp;11. It transcribes offline, remembers what was on your screen, and writes plain Markdown notes that stay on your PC.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://github.com/TH0MSX/OpenBird/releases/latest">Download for Windows 11</a>
+      <a class="btn" href="https://github.com/TH0MSX/OpenBird">View on GitHub</a>
+    </div>
+    <p class="small">v3.1.0, stable &middot; ARM64 MSI (unsigned) &middot; or clone and build for any Windows 11 PC</p>
+    <div class="shot"><img src="img/home.png" alt="The OpenBird home screen with the recording control, input levels and status tiles"></div>
+  </div>
+
+  <div class="notice" role="note">
+    <h2>A personal project. Check the law before you use it.</h2>
+    <p>I built OpenBird for my own use. It comes with no support and no warranty. <strong>The recommended way to use it is to clone the repository, read the code, and tweak what you need.</strong></p>
+    <p>It records other people and captures text from your screen. In the EU and UK that is personal data under the GDPR, and many places require every participant to consent to a recording. <strong>Check your data-protection and recording laws, and your employer's rules, first.</strong> <a href="https://github.com/TH0MSX/OpenBird/blob/main/PRIVACY-AND-LEGAL.md">Privacy and legal notes</a> (not legal advice).</p>
+  </div>
+
+  <section id="features">
+    <h2>What it does</h2>
+    <p class="sub">Everything runs on your PC. The notes are ordinary files you can read, search and keep.</p>
+    <div class="grid">
+      <div class="card"><div class="ic">&#127908;</div><h3>Records both sides</h3><p>Microphone and system audio as two channels. It starts when it hears speech, or on a hotkey.</p></div>
+      <div class="card"><div class="ic">&#128221;</div><h3>Transcribes offline</h3><p>Whisper through sherpa-onnx, on your own processor. No audio leaves the PC.</p></div>
+      <div class="card"><div class="ic">&#128421;</div><h3>Remembers your screen</h3><p>Reads the screen with Windows OCR every 20 seconds. Password managers, sign-in pages, private browsing and banking windows are skipped.</p></div>
+      <div class="card"><div class="ic">&#128196;</div><h3>Plain Markdown</h3><p>Summary, decisions, action items and a full transcript per meeting, plus a daily digest and a task list.</p></div>
+      <div class="card"><div class="ic">&#128269;</div><h3>Ask your memory</h3><p>Ask "what did we decide last time?" in plain words and get an answer with its sources.</p></div>
+      <div class="card"><div class="ic">&#129302;</div><h3>You choose the AI</h3><p><strong>Off</strong>, <strong>on this PC</strong> (Foundry Local, Ollama, LM Studio) or <strong>cloud</strong> (Gemini or Groq, with your own key).</p></div>
+    </div>
+  </section>
+
+  <section id="screens">
+    <h2>A look inside</h2>
+    <p class="sub">A native WinUI 3 app with Windows notifications, a tray menu, and a per-user installer.</p>
+    <div class="gallery">
+      <figure><img src="img/ask.png" alt="Ask screen" loading="lazy"><figcaption>Ask: search meetings and screen history in plain words</figcaption></figure>
+      <figure><img src="img/chat.png" alt="Chat screen" loading="lazy"><figcaption>Chat: a general assistant on the model you choose</figcaption></figure>
+      <figure><img src="img/settings.png" alt="Settings screen" loading="lazy"><figcaption>Settings: AI mode, local model server, cloud keys</figcaption></figure>
+      <figure><img src="img/setup-options.png" alt="MSI setup wizard" loading="lazy" style="width:100%;max-width:520px;margin:auto"><figcaption>The MSI installs per user, with a start-with-Windows option</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="install">
+    <h2>Install</h2>
+    <p class="sub">Two ways. The first is the one I recommend.</p>
+    <div class="two">
+      <div class="card rec">
+        <h3>Recommended: clone and build</h3>
+        <p>Windows 11 and the .NET 10 SDK. Read the code, change what you like, build for your own processor.</p>
+<pre><code>git clone https://github.com/TH0MSX/OpenBird.git
+cd OpenBird\dotnet
+.\install.ps1</code></pre>
+        <p>Installs to <code>%LOCALAPPDATA%\Programs\OpenBird</code> with a Start menu shortcut. No administrator rights.</p>
+      </div>
+      <div class="card">
+        <h3>Or: the MSI</h3>
+        <p>Download <code>OpenBird-3.1.0-arm64.msi</code> from the <a href="https://github.com/TH0MSX/OpenBird/releases/latest">latest release</a>, compare its SHA-256 with the release notes, then run it.</p>
+        <p style="margin-top:10px">It is <strong>unsigned</strong>, so SmartScreen warns. Choose <em>More info</em>, then <em>Run anyway</em>, only if the hash matches. ARM64 only. On x64, build from source.</p>
+      </div>
+    </div>
+    <div class="steps" style="margin-top:22px">
+      <div class="card"><h3>Set up</h3><p>A short guide checks your microphone and system audio, asks about screen memory, and offers to start with Windows.</p></div>
+      <div class="card"><h3>Download the speech model</h3><p>About 200 MB, once. After that, transcription is fully offline.</p></div>
+      <div class="card"><h3>Record</h3><p>Press <code>Win</code> + <code>Alt</code> + <code>R</code>, or let it start when a conversation begins.</p></div>
+    </div>
+  </section>
+
+  <section id="status">
+    <h2>How far it has been checked</h2>
+    <p class="sub">It is a stable release. It is also one person's project, tested on one machine.</p>
+    <table>
+      <tr><th>Core logic</th><td><span class="tag ok">99 tests passing</span> notes, search, digest, tasks, AI modes, chat, local-model handling</td></tr>
+      <tr><th>Windows 11 ARM64</th><td><span class="tag ok">Used daily</span> install, recording, transcription, Ask</td></tr>
+      <tr><th>Local AI (Foundry Local, NPU)</th><td><span class="tag ok">Works</span> with a small model. A 7B model did not load on a 16&nbsp;GB machine.</td></tr>
+      <tr><th>Windows 11 x64</th><td><span class="tag no">Not tested</span> builds for x64, never run there</td></tr>
+      <tr><th>MSI installer</th><td><span class="tag no">Unsigned</span> built and installed on the ARM64 PC only</td></tr>
+      <tr><th>Cloud AI</th><td><span class="tag no">Opt-in</span> covered by unit tests with fake providers</td></tr>
+    </table>
+  </section>
+
+  <section id="privacy">
+    <h2>Privacy, and what it is not</h2>
+    <p class="sub">Local-first is a good start. It is not the same as compliant.</p>
+    <div class="grid">
+      <div class="card"><h3>Stays on your PC</h3><p>No account, no analytics, no telemetry. The only network use is the one-time speech-model download, and cloud AI if you switch it on.</p></div>
+      <div class="card"><h3>Not encrypted</h3><p>Screenshots, the database and any API keys are stored unencrypted. Use disk encryption and keep the folders out of shared sync.</p></div>
+      <div class="card"><h3>Other people's data</h3><p>You record voices and read screens that include other people. Tell them, get consent where the law needs it, and ask your employer first for work meetings.</p></div>
+      <div class="card"><h3>Cloud mode</h3><p>If you add a Gemini or Groq key, transcripts and screen text are sent to that provider. Leave it off for anything confidential.</p></div>
+    </div>
+    <p style="margin-top:20px"><a href="https://github.com/TH0MSX/OpenBird/blob/main/PRIVACY-AND-LEGAL.md">Read the full privacy and legal notes &rarr;</a></p>
+  </section>
+
+</div>
+</main>
+
+<footer><div class="wrap">
+  <div>OpenBird 3.1.0 &middot; a personal project by <a href="https://github.com/TH0MSX">TH0MSX</a></div>
+  <div><a href="https://github.com/TH0MSX/OpenBird/blob/main/LICENSE">PolyForm Noncommercial 1.0.0</a> &middot; <a href="https://github.com/TH0MSX/OpenBird/blob/main/CHANGELOG.md">Changelog</a> &middot; <a href="https://github.com/TH0MSX/OpenBird/issues">Issues</a></div>
+</div></footer>
+
+</body>
+</html>

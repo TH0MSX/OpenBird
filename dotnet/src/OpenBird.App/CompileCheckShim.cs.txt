@@ -1,0 +1,13 @@
+// Not part of a real build. See the note in OpenBird.App.csproj.
+namespace OpenBird.App;
+
+public partial class App
+{
+    private void InitializeComponent() { }
+}
+
+public static class CompileCheckProgram
+{
+    [System.STAThread]
+    public static void Main() => Microsoft.UI.Xaml.Application.Start(_ => new App());
+}

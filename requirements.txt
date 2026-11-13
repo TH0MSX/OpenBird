@@ -1,0 +1,22 @@
+# OpenBird runtime dependencies (Windows 11, Python 3.10+).
+# Versions are not pinned yet: after a working install, run
+#   pip freeze > requirements.lock.txt
+# and install from that file on other machines.
+customtkinter
+pywinstyles
+pillow
+pystray
+numpy
+soundcard
+soundfile
+sherpa-onnx
+requests
+python-docx
+winrt-runtime
+winrt-Windows.Foundation
+winrt-Windows.Foundation.Collections
+winrt-Windows.Globalization
+winrt-Windows.Graphics.Imaging
+winrt-Windows.Media.Ocr
+winrt-Windows.Storage
+winrt-Windows.Storage.Streams

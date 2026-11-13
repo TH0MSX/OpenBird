@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+
+# Environments
+.venv/
+env/
+venv/
+.openbird-python
+
+# Personal settings and data (settings live in %LOCALAPPDATA%\OpenBird)
+config.json
+data/
+dist/
+*.db
+*.sqlite
+*.wav
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+
+# .NET build output
+bin/
+obj/
+!dotnet/tests/**/fixtures/*.db
+probe-report.txt
+
+Claude outputs/
+
+Claude outputs/

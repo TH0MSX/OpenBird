@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/OpenBird.App/OpenBird.App.csproj">
+      <Platform Project="x64" />
+    </Project>
+    <Project Path="src/OpenBird.Core/OpenBird.Core.csproj" />
+    <Project Path="src/OpenBird.Probe/OpenBird.Probe.csproj" />
+    <Project Path="src/OpenBird.Speech/OpenBird.Speech.csproj" />
+    <Project Path="src/OpenBird.Windows/OpenBird.Windows.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/OpenBird.Core.Tests/OpenBird.Core.Tests.csproj" />
+    <Project Path="tests/OpenBird.Speech.Tests/OpenBird.Speech.Tests.csproj" />
+  </Folder>
+</Solution>

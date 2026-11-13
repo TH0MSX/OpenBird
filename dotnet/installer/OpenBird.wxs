@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  OpenBird per-user installer (Windows Installer / MSI), authored for WiX Toolset 5.
+  Installs to %LOCALAPPDATA%\Programs\OpenBird without needing administrator rights, adds a Start menu
+  shortcut, and offers "start when I sign in" as a setup option. Your notes, recordings and settings in
+  %LOCALAPPDATA%\OpenBird and Documents\OpenBird are never touched, not even when you uninstall.
+
+  Variables (passed by build-msi.ps1): Version, PayloadDir, BuildArch (x64 or arm64), InstallerDir.
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui"
+     xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
+
+  <Package Name="OpenBird"
+           Manufacturer="TH0MSX"
+           Version="$(Version)"
+           UpgradeCode="51685956-5019-41A9-BC02-74E80FF93D3C"
+           Scope="perUser"
+           Language="1033"
+           Compressed="yes">
+
+    <SummaryInformation Description="OpenBird - local meeting recorder and screen memory" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of OpenBird is already installed. Remove it first if you really want to go back." />
+    <MediaTemplate EmbedCab="yes" CompressionLevel="high" />
+
+    <Icon Id="OpenBirdIcon" SourceFile="$(PayloadDir)\Assets\openbird.ico" />
+    <Property Id="ARPPRODUCTICON" Value="OpenBirdIcon" />
+    <Property Id="ARPNOMODIFY" Value="1" />
+
+    <StandardDirectory Id="LocalAppDataFolder">
+      <Directory Id="ProgramsFolder" Name="Programs">
+        <Directory Id="INSTALLFOLDER" Name="OpenBird" />
+      </Directory>
+    </StandardDirectory>
+
+    <!-- The program itself: everything the build produced, minus debug symbols. -->
+    <ComponentGroup Id="AppFiles" Directory="INSTALLFOLDER">
+      <Files Include="$(PayloadDir)\**">
+        <Exclude Files="$(PayloadDir)\**\*.pdb" />
+      </Files>
+    </ComponentGroup>
+
+    <ComponentGroup Id="StartMenu" Directory="ProgramMenuFolder">
+      <Component Id="StartMenuShortcut" Guid="B3F0C4A2-7E21-4D58-9A1B-2C6D5E8F1A30">
+        <Shortcut Id="StartMenuShortcutLink" Name="OpenBird" Description="Local meeting recorder and screen memory"
+                  Target="[INSTALLFOLDER]OpenBird.exe" WorkingDirectory="INSTALLFOLDER" Icon="OpenBirdIcon" />
+        <RegistryValue Root="HKCU" Key="Software\OpenBird\Installer" Name="StartMenuShortcut" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="DesktopIcon" Directory="DesktopFolder">
+      <Component Id="DesktopShortcut" Guid="6A9D2E71-4C3B-4F80-B5E2-91D7A0C34F18">
+        <Shortcut Id="DesktopShortcutLink" Name="OpenBird" Description="Local meeting recorder and screen memory"
+                  Target="[INSTALLFOLDER]OpenBird.exe" WorkingDirectory="INSTALLFOLDER" Icon="OpenBirdIcon" />
+        <RegistryValue Root="HKCU" Key="Software\OpenBird\Installer" Name="DesktopShortcut" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+
+    <!-- Same value, same command line and same key the app's own "Start OpenBird when I sign in" switch uses,
+         so that switch and this setup option always agree. -->
+    <ComponentGroup Id="SignInStart" Directory="INSTALLFOLDER">
+      <Component Id="RunAtSignIn" Guid="D41E8B95-0F6A-4B27-8C3D-5E2A7F1B9C64">
+        <RegistryValue Root="HKCU" Key="Software\Microsoft\Windows\CurrentVersion\Run" Name="OpenBird" Type="string"
+                       Value="&quot;[INSTALLFOLDER]OpenBird.exe&quot; --background" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+
+    <Feature Id="Main" Title="OpenBird" Level="1" AllowAbsent="no" Display="expand"
+             Description="The program and a Start menu shortcut. Needs about 250 MB.">
+      <ComponentGroupRef Id="AppFiles" />
+      <ComponentGroupRef Id="StartMenu" />
+    </Feature>
+
+    <Feature Id="StartWithWindows" Title="Start OpenBird when I sign in to Windows" Level="1" AllowAbsent="yes"
+             Description="Starts quietly in the notification area so meetings are never missed. You can change this later in OpenBird's Settings.">
+      <ComponentGroupRef Id="SignInStart" />
+    </Feature>
+
+    <Feature Id="DesktopShortcutFeature" Title="Desktop shortcut" Level="2" AllowAbsent="yes"
+             Description="Adds an OpenBird icon to your desktop.">
+      <ComponentGroupRef Id="DesktopIcon" />
+    </Feature>
+
+    <!-- Setup screens: welcome, options, ready, progress, finish. The licence page is skipped. -->
+    <ui:WixUI Id="WixUI_FeatureTree" />
+    <WixVariable Id="WixUIBannerBmp" Value="$(InstallerDir)\banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="$(InstallerDir)\dialog.bmp" />
+
+    <UI>
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="CustomizeDlg" Order="99" Condition="NOT Installed" />
+      <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="99" Condition="NOT Installed" />
+      <Publish Dialog="ExitDialog" Control="Finish" Event="DoAction" Value="SetLaunchTarget" Order="998"
+               Condition="WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 AND NOT Installed" />
+      <Publish Dialog="ExitDialog" Control="Finish" Event="DoAction" Value="LaunchOpenBird" Order="999"
+               Condition="WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 AND NOT Installed" />
+    </UI>
+
+    <!-- "Open OpenBird now" on the last page. -->
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Open OpenBird now" />
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
+    <CustomAction Id="SetLaunchTarget" Property="WixShellExecTarget" Value="[INSTALLFOLDER]OpenBird.exe" />
+    <?if $(BuildArch) = arm64 ?>
+    <CustomAction Id="LaunchOpenBird" DllEntry="WixShellExec" Impersonate="yes" BinaryRef="Wix4UtilCA_A64" />
+    <?else?>
+    <CustomAction Id="LaunchOpenBird" DllEntry="WixShellExec" Impersonate="yes" BinaryRef="Wix4UtilCA_X64" />
+    <?endif?>
+  </Package>
+</Wix>

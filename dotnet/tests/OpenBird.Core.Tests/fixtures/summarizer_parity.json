@@ -1,0 +1,485 @@
+[
+ {
+  "name": "action-heavy",
+  "user": "Tester",
+  "template": "executive",
+  "dialogue": [
+   {
+    "start_sec": 1.0,
+    "timestamp": "00:01",
+    "speaker": "Tester",
+    "channel": 0,
+    "text": "So, I will send the audit report to Anna by Friday."
+   },
+   {
+    "start_sec": 9.0,
+    "timestamp": "00:09",
+    "speaker": "Remote Participants",
+    "channel": 1,
+    "text": "Okay we need to review the release rate numbers before the client call."
+   },
+   {
+    "start_sec": 20.0,
+    "timestamp": "00:20",
+    "speaker": "Tester",
+    "channel": 0,
+    "text": "Sometimes the dashboard is slow."
+   },
+   {
+    "start_sec": 31.0,
+    "timestamp": "00:31",
+    "speaker": "Remote Participants",
+    "channel": 1,
+    "text": "Well, I will send the audit report to Anna by Friday."
+   },
+   {
+    "start_sec": 40.0,
+    "timestamp": "00:40",
+    "speaker": "Tester",
+    "channel": 0,
+    "text": "And check it."
+   },
+   {
+    "start_sec": 52.0,
+    "timestamp": "00:52",
+    "speaker": "Remote Participants",
+    "channel": 1,
+    "text": "Żółć: we will deploy the naïve café build, d'accord?"
+   }
+  ],
+  "screen": [
+   {
+    "timestamp": 1000.0,
+    "time_str": "10:00:01",
+    "window_title": "Q3 audit.xlsx",
+    "image_path": "a.png",
+    "ocr_text": "Release rate 97.2%\nPace 4.6\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   },
+   {
+    "timestamp": 1020.0,
+    "time_str": "10:00:21",
+    "window_title": "Teams",
+    "image_path": "b.png",
+    "ocr_text": ""
+   },
+   {
+    "timestamp": 1040.0,
+    "time_str": "10:00:41",
+    "window_title": "Q3 audit.xlsx",
+    "image_path": "c.png",
+    "ocr_text": "  CES 81%  "
+   }
+  ],
+  "expected_summary": {
+   "title": "Case action-heavy",
+   "template": "executive",
+   "tldr": "Discussion covering 52 words across 6 conversational turns.",
+   "summary": "Session recorded with 6 speaker segments. Topics covered primary operational discussion, workflow updates, and coordination.",
+   "for_you": [
+    "I will send the audit report to Anna by Friday."
+   ],
+   "action_items": [
+    {
+     "owner": "Tester",
+     "task": "I will send the audit report to Anna by Friday.",
+     "status": "pending"
+    },
+    {
+     "owner": "Remote Participants",
+     "task": "we need to review the release rate numbers before the client call.",
+     "status": "pending"
+    },
+    {
+     "owner": "Remote Participants",
+     "task": "Żółć: we will deploy the naïve café build, d'accord?",
+     "status": "pending"
+    }
+   ],
+   "decisions": [],
+   "topics": [
+    {
+     "title": "On-Screen Context & Work Applications",
+     "summary": "Active during call: Q3 audit.xlsx, Teams"
+    }
+   ]
+  },
+  "expected_markdown": "# Meeting: Case action-heavy\n\n> **TL;DR**: Discussion covering 52 words across 6 conversational turns.\n\n## Executive Summary\n\nSession recorded with 6 speaker segments. Topics covered primary operational discussion, workflow updates, and coordination.\n\n## For You\n\n- I will send the audit report to Anna by Friday.\n\n## Action Items\n\n- [ ] **Tester**: I will send the audit report to Anna by Friday.\n- [ ] **Remote Participants**: we need to review the release rate numbers before the client call.\n- [ ] **Remote Participants**: Żółć: we will deploy the naïve café build, d'accord?\n\n## Key Discussion Topics\n\n### On-Screen Context & Work Applications\nActive during call: Q3 audit.xlsx, Teams\n\n## Visual & Screen Context Timeline\n\n### `[10:00:01]` Q3 audit.xlsx\n> Release rate 97.2% Pace 4.6 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\n### `[10:00:21]` Teams\n### `[10:00:41]` Q3 audit.xlsx\n> CES 81%\n\n\n## Full Transcript\n\n**[00:01] Tester**: So, I will send the audit report to Anna by Friday.\n\n**[00:09] Remote Participants**: Okay we need to review the release rate numbers before the client call.\n\n**[00:20] Tester**: Sometimes the dashboard is slow.\n\n**[00:31] Remote Participants**: Well, I will send the audit report to Anna by Friday.\n\n**[00:40] Tester**: And check it.\n\n**[00:52] Remote Participants**: Żółć: we will deploy the naïve café build, d'accord?"
+ },
+ {
+  "name": "no-actions",
+  "user": "Tester",
+  "template": "executive",
+  "dialogue": [
+   {
+    "start_sec": 3.0,
+    "timestamp": "00:03",
+    "speaker": "Tester",
+    "channel": 0,
+    "text": "Good morning everyone."
+   },
+   {
+    "start_sec": 8.0,
+    "timestamp": "00:08",
+    "speaker": "Remote Participants",
+    "channel": 1,
+    "text": "Morning, nothing new from my side."
+   }
+  ],
+  "screen": [],
+  "expected_summary": {
+   "title": "Case no-actions",
+   "template": "executive",
+   "tldr": "Discussion covering 9 words across 2 conversational turns.",
+   "summary": "Session recorded with 2 speaker segments. Topics covered primary operational discussion, workflow updates, and coordination.",
+   "for_you": [
+    "Review session notes and timeline context."
+   ],
+   "action_items": [
+    {
+     "owner": "Tester",
+     "task": "Review meeting notes and follow up on discussed points.",
+     "status": "pending"
+    }
+   ],
+   "decisions": [],
+   "topics": []
+  },
+  "expected_markdown": "# Meeting: Case no-actions\n\n> **TL;DR**: Discussion covering 9 words across 2 conversational turns.\n\n## Executive Summary\n\nSession recorded with 2 speaker segments. Topics covered primary operational discussion, workflow updates, and coordination.\n\n## For You\n\n- Review session notes and timeline context.\n\n## Action Items\n\n- [ ] **Tester**: Review meeting notes and follow up on discussed points.\n\n## Full Transcript\n\n**[00:03] Tester**: Good morning everyone.\n\n**[00:08] Remote Participants**: Morning, nothing new from my side."
+ },
+ {
+  "name": "empty",
+  "user": "Tester",
+  "template": "executive",
+  "dialogue": [],
+  "screen": [],
+  "expected_summary": {
+   "title": "Case empty",
+   "template": "executive",
+   "tldr": "Brief audio recording with minimal speech detected.",
+   "summary": "Session completed. No distinct conversational turns were transcribed.",
+   "for_you": [
+    "Verify audio input levels and microphone selection."
+   ],
+   "action_items": [],
+   "decisions": [],
+   "topics": []
+  },
+  "expected_markdown": "# Meeting: Case empty\n\n> **TL;DR**: Brief audio recording with minimal speech detected.\n\n## Executive Summary\n\nSession completed. No distinct conversational turns were transcribed.\n\n## For You\n\n- Verify audio input levels and microphone selection."
+ },
+ {
+  "name": "many-actions",
+  "user": "Tester",
+  "template": "technical",
+  "dialogue": [
+   {
+    "start_sec": 0.0,
+    "timestamp": "00:00",
+    "speaker": "Tester",
+    "channel": 0,
+    "text": "We will create ticket number 0 and follow up next week."
+   },
+   {
+    "start_sec": 7.0,
+    "timestamp": "00:07",
+    "speaker": "Remote Participants",
+    "channel": 1,
+    "text": "We will create ticket number 1 and follow up next week."
+   },
+   {
+    "start_sec": 14.0,
+    "timestamp": "00:14",
+    "speaker": "Tester",
+    "channel": 0,
+    "text": "We will create ticket number 2 and follow up next week."
+   },
+   {
+    "start_sec": 21.0,
+    "timestamp": "00:21",
+    "speaker": "Remote Participants",
+    "channel": 1,
+    "text": "We will create ticket number 3 and follow up next week."
+   },
+   {
+    "start_sec": 28.0,
+    "timestamp": "00:28",
+    "speaker": "Tester",
+    "channel": 0,
+    "text": "We will create ticket number 4 and follow up next week."
+   },
+   {
+    "start_sec": 35.0,
+    "timestamp": "00:35",
+    "speaker": "Remote Participants",
+    "channel": 1,
+    "text": "We will create ticket number 5 and follow up next week."
+   },
+   {
+    "start_sec": 42.0,
+    "timestamp": "00:42",
+    "speaker": "Tester",
+    "channel": 0,
+    "text": "We will create ticket number 6 and follow up next week."
+   },
+   {
+    "start_sec": 49.0,
+    "timestamp": "00:49",
+    "speaker": "Remote Participants",
+    "channel": 1,
+    "text": "We will create ticket number 7 and follow up next week."
+   },
+   {
+    "start_sec": 56.0,
+    "timestamp": "00:56",
+    "speaker": "Tester",
+    "channel": 0,
+    "text": "We will create ticket number 8 and follow up next week."
+   },
+   {
+    "start_sec": 63.0,
+    "timestamp": "01:03",
+    "speaker": "Remote Participants",
+    "channel": 1,
+    "text": "We will create ticket number 9 and follow up next week."
+   },
+   {
+    "start_sec": 70.0,
+    "timestamp": "01:10",
+    "speaker": "Tester",
+    "channel": 0,
+    "text": "We will create ticket number 10 and follow up next week."
+   },
+   {
+    "start_sec": 77.0,
+    "timestamp": "01:17",
+    "speaker": "Remote Participants",
+    "channel": 1,
+    "text": "We will create ticket number 11 and follow up next week."
+   }
+  ],
+  "screen": [
+   {
+    "timestamp": 1000.0,
+    "time_str": "10:00:01",
+    "window_title": "Q3 audit.xlsx",
+    "image_path": "a.png",
+    "ocr_text": "Release rate 97.2%\nPace 4.6\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   }
+  ],
+  "expected_summary": {
+   "title": "Case many-actions",
+   "template": "technical",
+   "tldr": "Discussion covering 132 words across 12 conversational turns.",
+   "summary": "Session recorded with 12 speaker segments. Topics covered primary operational discussion, workflow updates, and coordination.",
+   "for_you": [
+    "We will create ticket number 0 and follow up next week.",
+    "We will create ticket number 2 and follow up next week.",
+    "We will create ticket number 4 and follow up next week.",
+    "We will create ticket number 6 and follow up next week.",
+    "We will create ticket number 8 and follow up next week."
+   ],
+   "action_items": [
+    {
+     "owner": "Tester",
+     "task": "We will create ticket number 0 and follow up next week.",
+     "status": "pending"
+    },
+    {
+     "owner": "Remote Participants",
+     "task": "We will create ticket number 1 and follow up next week.",
+     "status": "pending"
+    },
+    {
+     "owner": "Tester",
+     "task": "We will create ticket number 2 and follow up next week.",
+     "status": "pending"
+    },
+    {
+     "owner": "Remote Participants",
+     "task": "We will create ticket number 3 and follow up next week.",
+     "status": "pending"
+    },
+    {
+     "owner": "Tester",
+     "task": "We will create ticket number 4 and follow up next week.",
+     "status": "pending"
+    },
+    {
+     "owner": "Remote Participants",
+     "task": "We will create ticket number 5 and follow up next week.",
+     "status": "pending"
+    },
+    {
+     "owner": "Tester",
+     "task": "We will create ticket number 6 and follow up next week.",
+     "status": "pending"
+    },
+    {
+     "owner": "Remote Participants",
+     "task": "We will create ticket number 7 and follow up next week.",
+     "status": "pending"
+    }
+   ],
+   "decisions": [],
+   "topics": [
+    {
+     "title": "On-Screen Context & Work Applications",
+     "summary": "Active during call: Q3 audit.xlsx"
+    }
+   ]
+  },
+  "expected_markdown": "# Meeting: Case many-actions\n\n> **TL;DR**: Discussion covering 132 words across 12 conversational turns.\n\n## Executive Summary\n\nSession recorded with 12 speaker segments. Topics covered primary operational discussion, workflow updates, and coordination.\n\n## For You\n\n- We will create ticket number 0 and follow up next week.\n- We will create ticket number 2 and follow up next week.\n- We will create ticket number 4 and follow up next week.\n- We will create ticket number 6 and follow up next week.\n- We will create ticket number 8 and follow up next week.\n\n## Action Items\n\n- [ ] **Tester**: We will create ticket number 0 and follow up next week.\n- [ ] **Remote Participants**: We will create ticket number 1 and follow up next week.\n- [ ] **Tester**: We will create ticket number 2 and follow up next week.\n- [ ] **Remote Participants**: We will create ticket number 3 and follow up next week.\n- [ ] **Tester**: We will create ticket number 4 and follow up next week.\n- [ ] **Remote Participants**: We will create ticket number 5 and follow up next week.\n- [ ] **Tester**: We will create ticket number 6 and follow up next week.\n- [ ] **Remote Participants**: We will create ticket number 7 and follow up next week.\n\n## Key Discussion Topics\n\n### On-Screen Context & Work Applications\nActive during call: Q3 audit.xlsx\n\n## Visual & Screen Context Timeline\n\n### `[10:00:01]` Q3 audit.xlsx\n> Release rate 97.2% Pace 4.6 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\n\n## Full Transcript\n\n**[00:00] Tester**: We will create ticket number 0 and follow up next week.\n\n**[00:07] Remote Participants**: We will create ticket number 1 and follow up next week.\n\n**[00:14] Tester**: We will create ticket number 2 and follow up next week.\n\n**[00:21] Remote Participants**: We will create ticket number 3 and follow up next week.\n\n**[00:28] Tester**: We will create ticket number 4 and follow up next week.\n\n**[00:35] Remote Participants**: We will create ticket number 5 and follow up next week.\n\n**[00:42] Tester**: We will create ticket number 6 and follow up next week.\n\n**[00:49] Remote Participants**: We will create ticket number 7 and follow up next week.\n\n**[00:56] Tester**: We will create ticket number 8 and follow up next week.\n\n**[01:03] Remote Participants**: We will create ticket number 9 and follow up next week.\n\n**[01:10] Tester**: We will create ticket number 10 and follow up next week.\n\n**[01:17] Remote Participants**: We will create ticket number 11 and follow up next week."
+ },
+ {
+  "name": "actions-only",
+  "user": "Tester",
+  "template": "actions_only",
+  "dialogue": [
+   {
+    "start_sec": 1.0,
+    "timestamp": "00:01",
+    "speaker": "Tester",
+    "channel": 0,
+    "text": "So, I will send the audit report to Anna by Friday."
+   },
+   {
+    "start_sec": 9.0,
+    "timestamp": "00:09",
+    "speaker": "Remote Participants",
+    "channel": 1,
+    "text": "Okay we need to review the release rate numbers before the client call."
+   },
+   {
+    "start_sec": 20.0,
+    "timestamp": "00:20",
+    "speaker": "Tester",
+    "channel": 0,
+    "text": "Sometimes the dashboard is slow."
+   },
+   {
+    "start_sec": 31.0,
+    "timestamp": "00:31",
+    "speaker": "Remote Participants",
+    "channel": 1,
+    "text": "Well, I will send the audit report to Anna by Friday."
+   },
+   {
+    "start_sec": 40.0,
+    "timestamp": "00:40",
+    "speaker": "Tester",
+    "channel": 0,
+    "text": "And check it."
+   },
+   {
+    "start_sec": 52.0,
+    "timestamp": "00:52",
+    "speaker": "Remote Participants",
+    "channel": 1,
+    "text": "Żółć: we will deploy the naïve café build, d'accord?"
+   }
+  ],
+  "screen": [
+   {
+    "timestamp": 1000.0,
+    "time_str": "10:00:01",
+    "window_title": "Q3 audit.xlsx",
+    "image_path": "a.png",
+    "ocr_text": "Release rate 97.2%\nPace 4.6\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   },
+   {
+    "timestamp": 1020.0,
+    "time_str": "10:00:21",
+    "window_title": "Teams",
+    "image_path": "b.png",
+    "ocr_text": ""
+   },
+   {
+    "timestamp": 1040.0,
+    "time_str": "10:00:41",
+    "window_title": "Q3 audit.xlsx",
+    "image_path": "c.png",
+    "ocr_text": "  CES 81%  "
+   }
+  ],
+  "expected_summary": {
+   "title": "Case actions-only",
+   "template": "actions_only",
+   "tldr": "Discussion covering 52 words across 6 conversational turns.",
+   "summary": "Session recorded with 6 speaker segments. Topics covered primary operational discussion, workflow updates, and coordination.",
+   "for_you": [
+    "I will send the audit report to Anna by Friday."
+   ],
+   "action_items": [
+    {
+     "owner": "Tester",
+     "task": "I will send the audit report to Anna by Friday.",
+     "status": "pending"
+    },
+    {
+     "owner": "Remote Participants",
+     "task": "we need to review the release rate numbers before the client call.",
+     "status": "pending"
+    },
+    {
+     "owner": "Remote Participants",
+     "task": "Żółć: we will deploy the naïve café build, d'accord?",
+     "status": "pending"
+    }
+   ],
+   "decisions": [],
+   "topics": [
+    {
+     "title": "On-Screen Context & Work Applications",
+     "summary": "Active during call: Q3 audit.xlsx, Teams"
+    }
+   ]
+  },
+  "expected_markdown": "# Meeting: Case actions-only\n\n> **Actions & Decisions Brief**: Focused task commitments.\n\n## Action Items\n\n- [ ] **Tester**: I will send the audit report to Anna by Friday.\n- [ ] **Remote Participants**: we need to review the release rate numbers before the client call.\n- [ ] **Remote Participants**: Żółć: we will deploy the naïve café build, d'accord?\n\n## Decisions Made\n\n*No explicit decisions recorded.*"
+ },
+ {
+  "name": "empty-with-screen",
+  "user": "Tester",
+  "template": "executive",
+  "dialogue": [],
+  "screen": [
+   {
+    "timestamp": 1000.0,
+    "time_str": "10:00:01",
+    "window_title": "Q3 audit.xlsx",
+    "image_path": "a.png",
+    "ocr_text": "Release rate 97.2%\nPace 4.6\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   },
+   {
+    "timestamp": 1020.0,
+    "time_str": "10:00:21",
+    "window_title": "Teams",
+    "image_path": "b.png",
+    "ocr_text": ""
+   },
+   {
+    "timestamp": 1040.0,
+    "time_str": "10:00:41",
+    "window_title": "Q3 audit.xlsx",
+    "image_path": "c.png",
+    "ocr_text": "  CES 81%  "
+   }
+  ],
+  "expected_summary": {
+   "title": "Case empty-with-screen",
+   "template": "executive",
+   "tldr": "Brief audio recording with minimal speech detected.",
+   "summary": "Session completed. No distinct conversational turns were transcribed.",
+   "for_you": [
+    "Verify audio input levels and microphone selection."
+   ],
+   "action_items": [],
+   "decisions": [],
+   "topics": [
+    {
+     "title": "On-Screen Context & Work Applications",
+     "summary": "Active during call: Q3 audit.xlsx, Teams"
+    }
+   ]
+  },
+  "expected_markdown": "# Meeting: Case empty-with-screen\n\n> **TL;DR**: Brief audio recording with minimal speech detected.\n\n## Executive Summary\n\nSession completed. No distinct conversational turns were transcribed.\n\n## For You\n\n- Verify audio input levels and microphone selection.\n\n## Key Discussion Topics\n\n### On-Screen Context & Work Applications\nActive during call: Q3 audit.xlsx, Teams\n\n## Visual & Screen Context Timeline\n\n### `[10:00:01]` Q3 audit.xlsx\n> Release rate 97.2% Pace 4.6 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\n### `[10:00:21]` Teams\n### `[10:00:41]` Q3 audit.xlsx\n> CES 81%"
+ }
+]

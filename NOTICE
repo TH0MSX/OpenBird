@@ -1,0 +1,9 @@
+Required Notice: Copyright (c) 2026 TH0MSX (https://github.com/TH0MSX/OpenBird)
+
+OpenBird is licensed under the PolyForm Noncommercial License 1.0.0 (see LICENSE).
+https://polyformproject.org/licenses/noncommercial/1.0.0
+
+Third-party components keep their own licences:
+- sherpa-onnx and the Whisper speech models (Apache-2.0 and MIT)
+- Windows App SDK and .NET (Microsoft, MIT)
+- WiX Toolset, used at build time only (MS-RL)
